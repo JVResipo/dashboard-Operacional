@@ -2745,23 +2745,7 @@ function bind(){
     nav.addEventListener('click', function(e) {
       e.preventDefault();
       const viewName = this.getAttribute('data-view');
-      if (viewName === 'produtividade') {
-        if (sessionStorage.getItem('produtividade_unlocked') === '1') {
-          switchView(viewName);
-          return;
-        }
-        askPassword().then(async pw => {
-          if (pw === null) return;
-          if (await sha256Text(pw) === PROD_PASSWORD_HASH) {
-            sessionStorage.setItem('produtividade_unlocked', '1');
-            switchView(viewName);
-          } else {
-            showMsg('Senha incorreta para PRODUTIVIDADE.', 'err');
-          }
-        }).catch(()=>{});
-      } else {
-        switchView(viewName);
-      }
+      switchView(viewName);
     });
   });
 
